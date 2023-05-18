@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'lil-gui'
 
-BASE_PATH="/threejs-prj1"
+const BASE_PATH="/threejs-prj1"
 
 // Base
 const gui = new dat.GUI()
