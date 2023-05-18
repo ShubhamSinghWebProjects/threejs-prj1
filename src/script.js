@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'lil-gui'
 
-const BASE_PATH="/threejs-prj1"
+const BASE_PATH="/threejs-prj1/"
 
 // Base
 const gui = new dat.GUI()
@@ -16,7 +16,7 @@ const textureLoader = new THREE.TextureLoader()
 const matCapTexture = textureLoader.load(`${BASE_PATH}/textures/matcaps/5.png`)
 
 const fontLoader = new FontLoader();
-fontLoader.load(`${BASE_PATH}//fonts/helvetiker_regular.typeface.json`, (font) => {
+fontLoader.load(`${BASE_PATH}/fonts/helvetiker_regular.typeface.json`, (font) => {
 
     // Moved the material creation out here as well
     const material = new THREE.MeshMatcapMaterial({ map: matCapTexture })
@@ -32,7 +32,7 @@ fontLoader.load(`${BASE_PATH}//fonts/helvetiker_regular.typeface.json`, (font) =
         bevelOffset: 0,
         bevelSegments: 2
     })
-
+    textGeometry.name = 'text'
     textGeometry.center()
 
     const text = new THREE.Mesh(textGeometry, material)
@@ -107,6 +107,15 @@ const clock = new THREE.Clock()
 const tick = () =>
 {
     const elapsedTime = clock.getElapsedTime()
+
+    const donuts = scene.children.filter(child => child.type === 'Mesh')
+    donuts.forEach((donut, index) => {
+        if (donut.geometry instanceof TextGeometry) 
+            return
+        donut.rotation.x = elapsedTime * (index*0.01 + 1)
+        donut.rotation.y = elapsedTime * (index*0.01 + 1)
+    })
+
 
     // Update controls
     controls.update()
