@@ -2,6 +2,8 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'lil-gui'
 
+BASE_PATH="/threejs-prj1"
+
 // Base
 const gui = new dat.GUI()
 const canvas = document.querySelector('canvas.webgl')
@@ -11,10 +13,10 @@ import { FontLoader } from 'three/examples/jsm/loaders/FontLoader.js'
 import { TextGeometry } from 'three/examples/jsm/geometries/TextGeometry.js'
 
 const textureLoader = new THREE.TextureLoader()
-const matCapTexture = textureLoader.load('/textures/matcaps/5.png')
+const matCapTexture = textureLoader.load(`${BASE_PATH}/textures/matcaps/5.png`)
 
 const fontLoader = new FontLoader();
-fontLoader.load('/fonts/helvetiker_regular.typeface.json', (font) => {
+fontLoader.load(`${BASE_PATH}//fonts/helvetiker_regular.typeface.json`, (font) => {
 
     // Moved the material creation out here as well
     const material = new THREE.MeshMatcapMaterial({ map: matCapTexture })
