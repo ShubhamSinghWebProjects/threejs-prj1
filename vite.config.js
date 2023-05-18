@@ -3,7 +3,7 @@ const isCodeSandbox = 'SANDBOX_URL' in process.env || 'CODESANDBOX_HOST' in proc
 export default {
     root: 'src/',
     publicDir: '../static/',
-    base: '/threejs-prj1/',
+    base: '/threejs-prj1/docs/',
     server:
     {
         host: true,
